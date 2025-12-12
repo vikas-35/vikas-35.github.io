@@ -84,7 +84,6 @@ function parseJsonString(input) {
         input = input.replace(/"([^"]+)"\s*:\s*(?=[,}])/g, '"$1":null');
     }
     // --- FIX END ---
-
      
     // First parse attempt
     let parsed = JSON.parse(input);
