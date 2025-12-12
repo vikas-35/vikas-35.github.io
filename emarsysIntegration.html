@@ -77,7 +77,15 @@ function parseJsonString(input) {
     if (typeof input === "object" && input !== null) {
       return input; // Return it as-is
     }
-    
+
+    // --- FIX START ---
+    // Fix broken JSON where values are missing (e.g., "Avg":,)
+    if (typeof input === "string") {
+        input = input.replace(/"([^"]+)"\s*:\s*(?=[,}])/g, '"$1":null');
+    }
+    // --- FIX END ---
+
+     
     // First parse attempt
     let parsed = JSON.parse(input);
     
